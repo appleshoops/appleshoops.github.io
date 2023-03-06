@@ -12,7 +12,7 @@ import { Icon } from 'astro-icon'
 </div>
 
 <div class="bottombar">
-		<Icon name="ph:sun-dim-fill" id="icon"/>
+		<Icon name="bi:moon-fill" id="icon"/>
 </div>
 
 <div class='cursor'></div>
@@ -24,10 +24,16 @@ import { Icon } from 'astro-icon'
 
 	@import url(https://fonts.googleapis.com/css?family=Righteous);
 	
-	icon {
+	#icon {
 		width: 30px;
-		cursor: crosshair;
+		cursor: pointer;
 	}
+
+	:root {
+		--primary-color: #edf2fc;
+		--secondary-color: #272529;
+	}
+	
 	main {
 		margin: auto;
 		padding: 1.5rem;
