@@ -1,7 +1,8 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import Card from '../components/Card.astro';
-import { Icon } from 'astro-icon'
+import { Icon } from 'astro-icon';
+import themeButton.js from '../components/themeButton.js';
 ---
 <body>
 <div class="wrapper">
@@ -22,6 +23,8 @@ import { Icon } from 'astro-icon'
 
 </body>
 
+<themeButton client:load/>
+
 <style>
 	
 	[astro-icon="bi:moon-fill"] {
@@ -40,7 +43,7 @@ import { Icon } from 'astro-icon'
 		--primary-color: #ffffff;
 		--porpol: #AA30E9;
 	}
-	.darkroot{
+	.dark-theme{
 		--primary-color: #272529;
 		--porpol: #AA30E9;
 	}
