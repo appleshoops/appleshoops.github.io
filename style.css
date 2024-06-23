@@ -11,7 +11,7 @@ html {
 
 .grid-container {
     display: grid;
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     padding: 10px;
 }
 .grid-item {
@@ -21,8 +21,9 @@ html {
 }
 
 .header-item {
-    grid-column: 1 / 4;
+    grid-column: 1 / 5;
     padding: 20px;
+    margin: 20px;
     border-radius: 20px;
     border: 3px solid rgba(193, 243, 203, 0.2);
     background: linear-gradient(135deg, rgba(249,255,252,0.3) 100%, rgba(255, 255, 255, 0.3) 100%);
@@ -32,8 +33,37 @@ html {
     transition: transform 0.5s ease;
 }
 
-header-text {
+title-text {
     font-family: "Ubuntu";
     font-weight: bold;
     font-size: 25pt;
+}
+
+.about-me-item {
+    grid-column: 4 / 5;
+    grid-row: 3 / 5;
+    padding: 20px;
+    margin: 20px;
+    height: 300px;
+    width: 400px;
+    border-radius: 20px;
+    border: 3px solid rgba(193, 243, 203, 0.2);
+    background: linear-gradient(135deg, rgba(249,255,252,0.3) 100%, rgba(255, 255, 255, 0.3) 100%);
+    box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+}
+
+header-text {
+    font-family: "Ubuntu";
+    font-weight: bold;
+    font-size: 20pt;
+}
+
+normal-text {
+    font-family: "Ubuntu";
+    font-size: 15pt;
+    font-weight: normal;
+    display: block;
+    margin-top: 15px;
 }
