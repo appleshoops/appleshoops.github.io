@@ -1,6 +1,5 @@
 const UserID = "1560203265903833089"
-const proxyURL = 'https://corsproxy.io/?' + encodeURIComponent(`https://api.twitter.com/2/users/${UserID}/tweets`);
-const tweetURL = new URL(proxyURL);
+const tweetURL = new URL(`https://api.twitter.com/2/users/${UserID}/tweets`);
 
 const BearerToken = 'AAAAAAAAAAAAAAAAAAAAAJDUuQEAAAAAPUBLv2XYL32gzyqmONwebGEuIwc%3DkcZ5zslsHHKVS0Vuo2QCcoJC7y76U8ARDA3cByP8U26XTdOBmY';
 
