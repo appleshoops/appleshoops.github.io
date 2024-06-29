@@ -16,10 +16,10 @@ async function getUserData() {
     }
 }
 
-async function getTopAlbums() {
-    const AlbumURL = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
+async function getTopArtists() {
+    const artistURL = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
     try {
-        const response = await fetch(ArtistURL);
+        const response = await fetch(artistURL);
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
@@ -31,8 +31,38 @@ async function getTopAlbums() {
     }
 }
 
-async function getTopAlbums
+async function getTopAlbums() {
+    const AlbumURL = `http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
+    try {
+        const response = await fetch(AlbumURL);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
 
+        const albumJSON = await response.json();
+        console.log(albumJSON);
+    } catch(error) {
+        console.error(error.message);
+    }
+}
+
+async function getRecentTracks() {
+    const tracksURL = `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=AppleSheep&api_key=${apiKey}&limit=5&format=json`
+    try {
+        const response = await fetch(tracksURL);
+        if (!response.ok) {
+            throw new Error(`Error: ${response.status}`);
+        }
+
+        const tracksJSON = await response.json();
+        console.log(tracksJSON);
+    
+    } catch(error) {
+        console.error(error.message);
+    }
+}
 
 getUserData();
 getTopArtists();
+getTopAlbums();
+getRecentTracks();
