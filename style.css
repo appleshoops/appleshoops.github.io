@@ -45,7 +45,7 @@ title-text {
     padding: 20px;
     margin: 20px;
     height: 300px;
-    width: 400px;
+    width: auto;
     border-radius: 20px;
     border: 3px solid rgba(193, 243, 203, 0.2);
     background: linear-gradient(135deg, rgba(249,255,252,0.3) 100%, rgba(255, 255, 255, 0.3) 100%);
