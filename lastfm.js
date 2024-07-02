@@ -36,6 +36,23 @@ async function getTopArtists() {
         topArtist4 = artistJSON.topartists.artist[3].name;
         topArtist5 = artistJSON.topartists.artist[4].name;
         
+        let iTunesArtistsURLs = {}; // Object to store the URLs
+
+        for (let i = 0; i < artistJSON.topartists.artist.length; i++) {
+        const artist = artistJSON.topartists.artist[i];
+        iTunesURL = 'https://corsproxy.io/?' + encodeURIComponent(`https://itunes.apple.com/search?term=${artist.name}&country=AU&entity=musicArtist&attribute=artistTerm&limit=1&lang=en_AU`)
+        try {
+            const response = await fetch(iTunesURL);
+            if (!response.ok) {
+                throw new Error(`Error: ${response.status}`);
+         }
+        const data = await response.json();
+        iTunesArtistsURLs[`iTunesArtist${i + 1}`] = data;
+        console.log(iTunesArtistsURLs.iTunesArtist1) // Dynamically name the key
+        } catch (error) {
+        console.error(error.message);
+    }
+}
     } catch(error) {
         console.error(error.message);
     }
