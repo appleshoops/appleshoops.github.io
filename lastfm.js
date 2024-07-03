@@ -1,6 +1,8 @@
 const apiKey = '36bfda5a889b981d0689d00afef313ec'
 const sharedSecret = '79b945f9ad2541bd64c67132cc888918'
 
+const parser = new DOMParser();
+
 async function getUserData() {
     const userURL = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=AppleSheep&api_key=${apiKey}&format=json`;
     try {
@@ -36,19 +38,37 @@ async function getTopArtists() {
         topArtist4 = artistJSON.topartists.artist[3].name;
         topArtist5 = artistJSON.topartists.artist[4].name;
         
-        let iTunesArtistsURLs = {}; // Object to store the URLs
+        let iTunesArtistsData = {};
+        let iTunesArtistImages = {}; // Object to store the URLs
 
         for (let i = 0; i < artistJSON.topartists.artist.length; i++) {
         const artist = artistJSON.topartists.artist[i];
-        iTunesURL = 'https://corsproxy.io/?' + encodeURIComponent(`https://itunes.apple.com/search?term=${artist.name}&country=AU&entity=musicArtist&attribute=artistTerm&limit=1&lang=en_AU`)
+        iTunesSearchURL = 'https://corsproxy.io/?' + encodeURIComponent(`https://itunes.apple.com/search?term=${artist.name}&country=AU&entity=musicArtist&attribute=artistTerm&limit=1&lang=en_AU`)
         try {
-            const response = await fetch(iTunesURL);
+            const response = await fetch(iTunesSearchURL);
             if (!response.ok) {
                 throw new Error(`Error: ${response.status}`);
          }
-        const data = await response.json();
-        iTunesArtistsURLs[`iTunesArtist${i + 1}`] = data;
-        console.log(iTunesArtistsURLs.iTunesArtist1) // Dynamically name the key
+            const data = await response.json();
+            iTunesArtistURL = 'https://corsproxy.io/?' + encodeURIComponent(data.results[0].artistLinkUrl);
+            iTunesArtistsData[`iTunesArtist${i + 1}`] = data;
+
+            try {
+                const response = await fetch(iTunesArtistURL);
+                if (!response.ok) {
+                    throw new Error(`Error: ${response.status}`);
+                }
+                const iTunesArtistPage = await response.text();
+                const iTunesArtistDoc = parser.parseFromString(iTunesArtistPage, 'text/html');
+                imageURL = iTunesArtistDoc.querySelector('meta[property="og:image"]').getAttribute('content');
+                if (imageURL.endsWith("cw.png")) {
+                    imageURL = imageURL.replace("cw.png", "cc.png");
+                    console.log(imageURL);
+                }
+                iTunesArtistImages[`iTunesArtist${i + 1}`] = imageURL
+            } catch (error) {
+                console.error(error.message);
+            }
         } catch (error) {
         console.error(error.message);
     }
