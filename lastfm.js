@@ -5,7 +5,7 @@ const parser = new DOMParser();
 
 async function getUserData() {
     let scrobbles = 0;
-    const userURL = `http://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=AppleSheep&api_key=${apiKey}&format=json`;
+    const userURL = `https://ws.audioscrobbler.com/2.0/?method=user.getinfo&user=AppleSheep&api_key=${apiKey}&format=json`;
     try {
         const response = await fetch(userURL);
         if (!response.ok) {
@@ -25,7 +25,7 @@ async function getUserData() {
 }
 
 async function getTopArtists() {
-    const artistURL = `http://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
+    const artistURL = `https://ws.audioscrobbler.com/2.0/?method=user.gettopartists&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
     try {
         const response = await fetch(artistURL);
         if (!response.ok) {
@@ -80,7 +80,7 @@ async function getTopArtists() {
 }
 
 async function getTopAlbums() {
-    const AlbumURL = `http://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
+    const AlbumURL = `https://ws.audioscrobbler.com/2.0/?method=user.gettopalbums&user=AppleSheep&api_key=${apiKey}&period=1month&limit=5&format=json`
     try {
         const response = await fetch(AlbumURL);
         if (!response.ok) {
@@ -113,7 +113,7 @@ async function getTopAlbums() {
 }
 
 async function getRecentTracks() {
-    const tracksURL = `http://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=AppleSheep&api_key=${apiKey}&limit=5&format=json`
+    const tracksURL = `https://ws.audioscrobbler.com/2.0/?method=user.getrecenttracks&user=AppleSheep&api_key=${apiKey}&limit=5&format=json`
     try {
         const response = await fetch(tracksURL);
         if (!response.ok) {
