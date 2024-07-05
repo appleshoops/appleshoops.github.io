@@ -77,6 +77,8 @@ async function getTopArtists() {
     } catch(error) {
         console.error(error.message);
     }
+
+    document.getElementById("artistImage1").textContent = iTunesArtistImages.iTunesArtist1;
 }
 
 async function getTopAlbums() {
@@ -157,3 +159,4 @@ getTopAlbums();
 getRecentTracks();
 
 document.addEventListener('DOMContentLoaded', getUserData);
+document.addEventListener('DOMContentLoaded', getTopArtists);
