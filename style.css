@@ -71,7 +71,6 @@ title-text {
 
 .music-info-item {
     display: block;
-    height: 200px;
     padding: 20px;
     margin-top: 60px;
     margin-right: 5px;
@@ -94,12 +93,18 @@ title-text {
 }
 
 .music-info-mini {
-    display: block;
+    display: flex;
     height: 16%;
     width: 100%;
-    border: 5px solid rgb(0, 0, 0);
-    margin-top: 3px;
-    margin-bottom: 3px;
+    margin-top: 7px;
+    margin-bottom: 7px;
+    align-items: center;
+}
+
+.music-image {
+    max-width: 90%;
+    max-height: 90%;
+    border-radius: 15%;
 }
 
 header-text {
@@ -127,5 +132,14 @@ inner-header-text {
     font-family: "Ubuntu";
     font-size: 13pt;
     font-weight: bold;
+
+}
+
+texty-text {
+    font-family: "Ubuntu";
+    font-size: 13pt;
+    font-weight: bold;
+    align-self: left;
+    margin-left: 5px;
 
 }

@@ -34,11 +34,15 @@ async function getTopArtists() {
 
         const artistJSON = await response.json();
         console.log(artistJSON);
-        topArtist1 = artistJSON.topartists.artist[0].name;
-        topArtist2 = artistJSON.topartists.artist[1].name;
-        topArtist3 = artistJSON.topartists.artist[2].name;
-        topArtist4 = artistJSON.topartists.artist[3].name;
-        topArtist5 = artistJSON.topartists.artist[4].name;
+        topArtists = {};
+        for (let i = 0; i < artistJSON.topartists.artist.length; i++) {
+            const artist = artistJSON.topartists.artist[i];
+            topArtists[`artist${i + 1}`] = artist.name;
+        }
+
+        for (let i = 1; i <= Object.keys(topArtists).length; i++) {
+            document.getElementById(`artist${i}`).textContent = topArtists[`artist${i}`];
+        }
         
         let iTunesArtistsData = {};
         let iTunesArtistImages = {}; // Object to store the URLs
@@ -67,6 +71,9 @@ async function getTopArtists() {
                         imageURL = imageURL.replace("cw.png", "cc.png");
                     }
                     iTunesArtistImages[`iTunesArtist${i + 1}`] = imageURL
+                    for (let i = 1; i <= Object.keys(iTunesArtistImages).length; i++) {
+                        document.getElementById(`artistImage${i}`).src = iTunesArtistImages[`iTunesArtist${i}`];
+                    }
                 } catch (error) {
                     console.error(error.message);
                 }
