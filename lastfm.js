@@ -34,7 +34,7 @@ async function getTopArtists() {
 
         const artistJSON = await response.json();
         console.log(artistJSON);
-        topArtists = {};
+        let topArtists = {};
         for (let i = 0; i < artistJSON.topartists.artist.length; i++) {
             const artist = artistJSON.topartists.artist[i];
             topArtists[`artist${i + 1}`] = artist.name;
@@ -85,7 +85,6 @@ async function getTopArtists() {
         console.error(error.message);
     }
 
-    document.getElementById("artistImage1").textContent = iTunesArtistImages.iTunesArtist1;
 }
 
 async function getTopAlbums() {
@@ -95,20 +94,38 @@ async function getTopAlbums() {
         if (!response.ok) {
             throw new Error(`Error: ${response.status}`);
         }
-
         const albumJSON = await response.json();
         console.log(albumJSON);
-        topAlbum1 = albumJSON.topalbums.album[0].name;
-        topAlbum2 = albumJSON.topalbums.album[1].name;
-        topAlbum3 = albumJSON.topalbums.album[2].name;
-        topAlbum4 = albumJSON.topalbums.album[3].name;
-        topAlbum5 = albumJSON.topalbums.album[4].name;
 
-        topAlbumArtist1 = albumJSON.topalbums.album[0].artist.name;
-        topAlbumArtist2 = albumJSON.topalbums.album[1].artist.name;
-        topAlbumArtist3 = albumJSON.topalbums.album[2].artist.name;
-        topAlbumArtist4 = albumJSON.topalbums.album[3].artist.name;
-        topAlbumArtist5 = albumJSON.topalbums.album[4].artist.name;
+        let albumNames = {};
+        for (let i = 0; i < albumJSON.topalbums.album.length; i++) {
+            const album = albumJSON.topalbums.album[i];
+            albumNames[`album${i + 1}Name`] = album.name;
+        }
+
+        for (let i = 1; i <= Object.keys(albumNames).length; i++) {
+            document.getElementById(`album${i}Name`).textContent = albumNames[`album${i}Name`]
+        }
+
+        let albumArtists = {};
+        for (let i = 0; i < albumJSON.topalbums.album.length; i++) {
+            const album = albumJSON.topalbums.album[i];
+            albumArtists[`album${i + 1}Artist`] = album.artist.name;
+        }
+
+        for (let i = 1; i <= Object.keys(albumArtists).length; i++) {
+            document.getElementById(`album${i}Artist`).textContent = albumArtists[`album${i}Artist`]
+        }
+
+        let albumImages = {};
+        for (let i = 0; i < albumJSON.topalbums.album.length; i++) {
+            const album = albumJSON.topalbums.album[i];
+            albumImages[`album${i + 1}Image`] = album.image[3]['#text'];
+        }
+
+        for (let i = 1; i <= Object.keys(albumImages).length; i++) {
+            document.getElementById(`album${i}Image`).src = albumImages[`album${i}Image`]
+        }
 
         topAlbumImage1 = albumJSON.topalbums.album[0].image[1]['#text'];
         topAlbumImage2 = albumJSON.topalbums.album[1].image[1]['#text'];
@@ -164,6 +181,3 @@ getUserData();
 getTopArtists();
 getTopAlbums();
 getRecentTracks();
-
-document.addEventListener('DOMContentLoaded', getUserData);
-document.addEventListener('DOMContentLoaded', getTopArtists);

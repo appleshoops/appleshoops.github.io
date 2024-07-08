@@ -92,19 +92,40 @@ title-text {
     width: 1px;
 }
 
+.music-info-mini-artist {
+    display: flex;
+    height: 16%;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    align-items: center;
+    text-align: left;
+}
+
 .music-info-mini {
     display: flex;
     height: 16%;
     width: 100%;
-    margin-top: 7px;
-    margin-bottom: 7px;
+    margin-top: 10px;
+    margin-bottom: 10px;
     align-items: center;
+    text-align: left;
 }
 
 .music-image {
     max-width: 90%;
     max-height: 90%;
     border-radius: 15%;
+    margin-right: 7px;
+}
+
+.text-music-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    align-items: left;
+    margin-left: 7px;
+
 }
 
 header-text {
@@ -130,7 +151,7 @@ right-text {
 
 inner-header-text {
     font-family: "Ubuntu";
-    font-size: 13pt;
+    font-size: 20pt;
     font-weight: bold;
 
 }
@@ -139,7 +160,17 @@ texty-text {
     font-family: "Ubuntu";
     font-size: 13pt;
     font-weight: bold;
-    align-self: left;
+    text-align: left;
     margin-left: 5px;
 
+}
+
+smally-text {
+    font-family: "Ubuntu";
+    font-size: 10pt;
+    font-weight: normal;
+    text-align: left;
+    text-indent: 0%;
+    margin-left: 5px;
+    display: block;
 }
