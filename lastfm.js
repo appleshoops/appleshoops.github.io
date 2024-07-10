@@ -127,12 +127,6 @@ async function getTopAlbums() {
             document.getElementById(`album${i}Image`).src = albumImages[`album${i}Image`]
         }
 
-        topAlbumImage1 = albumJSON.topalbums.album[0].image[1]['#text'];
-        topAlbumImage2 = albumJSON.topalbums.album[1].image[1]['#text'];
-        topAlbumImage3 = albumJSON.topalbums.album[2].image[1]['#text'];
-        topAlbumImage4 = albumJSON.topalbums.album[3].image[1]['#text'];
-        topAlbumImage5 = albumJSON.topalbums.album[4].image[1]['#text'];
-
     } catch(error) {
         console.error(error.message);
     }
@@ -148,25 +142,46 @@ async function getRecentTracks() {
 
         const tracksJSON = await response.json();
         console.log(tracksJSON);
-    
-        recentTrack1 = tracksJSON.recenttracks.track[0].name;
-        recentTrack2 = tracksJSON.recenttracks.track[1].name;
-        recentTrack3 = tracksJSON.recenttracks.track[2].name;
-        recentTrack4 = tracksJSON.recenttracks.track[3].name;
-        recentTrack5 = tracksJSON.recenttracks.track[4].name;
-       
-        recentTrackAlbum1 = tracksJSON.recenttracks.track[0].album['#text'];
-        recentTrackAlbum2 = tracksJSON.recenttracks.track[1].album['#text'];
-        recentTrackAlbum3 = tracksJSON.recenttracks.track[2].album['#text'];
-        recentTrackAlbum4 = tracksJSON.recenttracks.track[3].album['#text'];
-        recentTrackAlbum5 = tracksJSON.recenttracks.track[4].album['#text'];
 
-        recentTrackArtist1 = tracksJSON.recenttracks.track[0].artist['#text'];
-        recentTrackArtist2 = tracksJSON.recenttracks.track[1].artist['#text'];
-        recentTrackArtist3 = tracksJSON.recenttracks.track[2].artist['#text'];
-        recentTrackArtist4 = tracksJSON.recenttracks.track[3].artist['#text'];
-        recentTrackArtist5 = tracksJSON.recenttracks.track[4].artist['#text'];
+        let recentTracks = {};
+        for (let i = 0; i < tracksJSON.recenttracks.track.length; i++) {
+            const track = tracksJSON.recenttracks.track[i]
+            recentTracks[`track${i + 1}Name`] = track.name;
+        }
 
+        for (let i = 1; i <= Object.keys(recentTracks).length; i++) {
+            document.getElementById(`track${i}Name`).textContent = recentTracks[`track${i}Name`]
+        }
+
+        let recentTrackArtists = {};
+        for (let i = 0; i < tracksJSON.recenttracks.track.length; i++) {
+            const track = tracksJSON.recenttracks.track[i];
+            recentTrackArtists[`track${i + 1}Artist`] = track.artist[`#text`];
+        }
+
+        for (let i = 1; i <= Object.keys(recentTrackArtists).length; i++) {
+            document.getElementById(`track${i}Artist`).textContent = recentTrackArtists[`track${i}Artist`]
+        }
+
+        let recentTrackAlbums = {};
+        for (let i = 0; i < tracksJSON.recenttracks.track.length; i++) {
+            const track = tracksJSON.recenttracks.track[i];
+            recentTrackAlbums[`track${i + 1}Album`] = track.album[`#text`];
+        }
+
+        for (let i = 1; i <= Object.keys(recentTrackAlbums).length; i++) {
+            document.getElementById(`track${i}Album`).textContent = recentTrackAlbums[`track${i}Album`]
+        }
+
+        let recentTrackImages = {};
+        for (let i = 0; i < tracksJSON.recenttracks.track.length; i++) {
+            const track = tracksJSON.recenttracks.track[i];
+            recentTrackImages[`track${i + 1}Image`] = track.image[3]['#text'];
+        }
+
+        for (let i = 1; i <= Object.keys(recentTrackImages).length; i++) {
+            document.getElementById(`track${i}Image`).src = recentTrackImages[`track${i}Image`];
+        }
         recentTrackImage1 = tracksJSON.recenttracks.track[0].image[1]['#text'];
         recentTrackImage2 = tracksJSON.recenttracks.track[1].image[1]['#text'];
         recentTrackImage3 = tracksJSON.recenttracks.track[2].image[1]['#text'];

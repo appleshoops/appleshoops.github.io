@@ -65,6 +65,7 @@ title-text {
     border: 3px solid rgba(193, 243, 203, 0.2);
     background: linear-gradient(135deg, rgba(249,255,252,0.3) 100%, rgba(255, 255, 255, 0.3) 100%);
     box-shadow: 0 0 80px rgba(0, 0, 0, 0.3);
+    box-sizing: border-box;
     backdrop-filter: blur(40px);
     -webkit-backdrop-filter: blur(40px);
 }
@@ -79,6 +80,7 @@ title-text {
     border: 3px solid rgba(193, 243, 203, 0.447);
     background: linear-gradient(135deg, rgba(249,255,252,0.3) 100%, rgba(255, 255, 255, 0.3) 100%);
     backdrop-filter: blur(40px);
+    box-sizing: border-box;
     width: 50%;
     height: 80%
 
@@ -147,6 +149,8 @@ right-text {
     font-size: 15pt;
     font-weight: bold;
     text-align: right;
+    box-sizing: border-box;
+    display: block;
 }
 
 inner-header-text {
@@ -168,6 +172,16 @@ texty-text {
 smally-text {
     font-family: "Ubuntu";
     font-size: 10pt;
+    font-weight: normal;
+    text-align: left;
+    text-indent: 0%;
+    margin-left: 5px;
+    display: block;
+}
+
+even-more-smally-text {
+    font-family: "Ubuntu";
+    font-size: 8pt;
     font-weight: normal;
     text-align: left;
     text-indent: 0%;
